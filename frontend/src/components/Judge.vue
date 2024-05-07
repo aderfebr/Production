@@ -35,7 +35,10 @@
         <el-divider></el-divider>
         <span class="judge">请输入已知事实的节点号,以逗号分隔:</span><br><br>
         <el-input v-model="judge"></el-input><br><br>
-        <el-button type="success" @click="forward">正向推理</el-button>
+        <el-button type="success" @click="forward">正向推理</el-button><br><br>
+        <span class="judge">请输入假设的节点号:</span><br><br>
+        <el-input v-model="fact"></el-input><br><br>
+        <el-button type="success" @click="backward">反向推理</el-button>
       </div>
     </el-col>
   </el-row>
@@ -48,6 +51,7 @@ const {proxy} = getCurrentInstance()
 var nodeData=ref();
 var edgeData=ref();
 var judge=ref('1,2,3,4,5,6,7');
+var fact=ref('17');
 
 function getnode(){
   proxy.$http.post("http://localhost:8000/api/getnode/",{
@@ -73,7 +77,18 @@ function getedge(){
 
 function forward(){
   proxy.$http.post("http://localhost:8000/api/forward/",{
-    'judge':judge.value
+    'judge':judge.value,
+  },{
+    headers: {'Content-Type': 'multipart/form-data'}
+  }).then((res)=>{
+    window.alert(res.data.msg)
+  });
+}
+
+function backward(){
+  proxy.$http.post("http://localhost:8000/api/backward/",{
+    'judge':judge.value,
+    'fact':fact.value,
   },{
     headers: {'Content-Type': 'multipart/form-data'}
   }).then((res)=>{
