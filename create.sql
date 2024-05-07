@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS node;
 DROP TABLE IF EXISTS edge;
 CREATE TABLE node(
-    id INTEGER,
+    id INTEGER PRIMARY KEY,
     description VARCHAR(50)
 );
 CREATE TABLE edge(

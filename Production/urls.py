@@ -20,5 +20,10 @@ from app import views
 
 urlpatterns = [
     path("api/getnode/", views.getnode),
+    path("api/addnode/", views.addnode),
+    path("api/deletenode/", views.deletenode),
     path("api/getedge/", views.getedge),
+    path("api/addedge/", views.addedge),
+    path("api/deleteedge/", views.deleteedge),
+    path("api/judgesubmit/",views.judge),
 ]
