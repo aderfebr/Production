@@ -33,9 +33,9 @@
       <div class="main">
         <div class="title">推理</div>
         <el-divider></el-divider>
-        <span class="judge">请输入已知信息的节点号,以逗号分隔:</span><br><br>
+        <span class="judge">请输入已知事实的节点号,以逗号分隔:</span><br><br>
         <el-input v-model="judge"></el-input><br><br>
-        <el-button type="success" @click="judgesubmit">开始推理</el-button>
+        <el-button type="success" @click="forward">正向推理</el-button>
       </div>
     </el-col>
   </el-row>
@@ -71,8 +71,8 @@ function getedge(){
   });
 }
 
-function judgesubmit(){
-  proxy.$http.post("http://localhost:8000/api/judgesubmit/",{
+function forward(){
+  proxy.$http.post("http://localhost:8000/api/forward/",{
     'judge':judge.value
   },{
     headers: {'Content-Type': 'multipart/form-data'}

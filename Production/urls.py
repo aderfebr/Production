@@ -25,5 +25,5 @@ urlpatterns = [
     path("api/getedge/", views.getedge),
     path("api/addedge/", views.addedge),
     path("api/deleteedge/", views.deleteedge),
-    path("api/judgesubmit/",views.judge),
+    path("api/forward/",views.forward),
 ]

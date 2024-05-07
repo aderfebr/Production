@@ -15,6 +15,7 @@ class Edge(models.Model):
 class Node(models.Model):
     id = models.IntegerField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
+    ans = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

@@ -16,6 +16,13 @@
         style="padding: 5px 0;"
         v-model="node.description"
       />
+      <span>是否为解:</span><br>
+      <el-switch
+        v-model="node.ans"
+        active-text="是"
+        inactive-text="否"
+        style="padding: 5px 0;"
+      />
       <template #footer>
         <div class="dialog-footer">
           <el-button @click="addnodeVis=false">取消</el-button>
@@ -74,6 +81,9 @@
           <el-table-column label="描述">
             <template #default="scope">{{ scope.row.description }}</template>
           </el-table-column>
+          <el-table-column label="是否为可能解">
+            <template #default="scope"><p v-if="scope.row.ans">是</p><p v-if="!scope.row.ans">否</p></template>
+          </el-table-column>
           <el-table-column label="操作">
             <template #default="scope">
               <el-button type="danger" @click="deletenode(scope.row.id)">删除</el-button>
@@ -131,6 +141,7 @@ function addnode(){
   proxy.$http.post("http://localhost:8000/api/addnode/",{
     'id':node.value.id,
     'description':node.value.description,
+    'ans':node.value.ans,
   },{
     headers: {'Content-Type': 'multipart/form-data'}
   }).then((res)=>{
